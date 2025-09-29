@@ -3,6 +3,9 @@
 
 namespace Interface {
 
+ByteStringClone::ByteStringClone()
+  : value{} {};
+
 ByteStringClone::ByteStringClone(const UA_ByteString& source)
   : value{} {
     value.length = source.length;
@@ -14,6 +17,17 @@ ByteStringClone::ByteStringClone(const UA_ByteString& source)
 
 ByteStringClone::~ByteStringClone() {
     UA_ByteString_clear(&value);
+}
+
+auto
+ByteStringClone::set(const UA_ByteString& source) -> void {
+    if (!value.data && value.length == 0) {
+        value.length = source.length;
+        value.data   = static_cast<UA_Byte*>(malloc(value.length * sizeof(UA_ByteString)));
+        if (value.data && source.data) {
+            std::memcpy(value.data, source.data, value.length);
+        }
+    }
 }
 
 UA_ByteString&

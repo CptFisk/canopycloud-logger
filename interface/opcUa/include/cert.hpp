@@ -8,7 +8,15 @@ class X509Certificate {
     X509Certificate();
     ~X509Certificate();
 
-    auto generate(int keySize, int valid, const std::string& subject) -> void;
+    /**
+     * @brief Write keyfiles to disk
+     * @param keySize Size of key (2048 is default)
+     * @param valid Key expiration
+     * @param subject Subject in certificate
+     * @param cert Filename for certificate
+     * @param key Filename for key
+     */
+    auto generate(int keySize, int valid, const std::string& subject, const std::string& cert, const std::string& key) -> void;
 
   private:
     std::string subjectCN;

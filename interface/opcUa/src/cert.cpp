@@ -16,12 +16,12 @@ X509Certificate::~X509Certificate() {
 }
 
 auto
-X509Certificate::generate(int keySize, int valid, const std::string& subject) -> void {
+X509Certificate::generate(int keySize, int valid, const std::string& subject, const std::string& cert, const std::string& key) -> void {
     if (!generateKey(keySize))
         throw std::runtime_error("Failed to generate key");
     if (!generateCertificate(valid, subject))
         throw std::runtime_error("Failed to generate certificate");
-    if (!writeDER("client.der", "key.der"))
+    if (!writeDER(cert, key))
         throw std::runtime_error("Failed to write files");
 }
 

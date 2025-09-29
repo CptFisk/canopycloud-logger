@@ -12,7 +12,7 @@ class ByteStringLoad {
     explicit ByteStringLoad(const std::string& path); ///< Constructor that loads a file
     ~ByteStringLoad();
 
-    [[nodiscard]] auto getValue() const -> UA_ByteString;
+    [[nodiscard]] UA_ByteString& getValue();
 
     // Overloaders
     ByteStringLoad(const ByteStringLoad&)            = delete;

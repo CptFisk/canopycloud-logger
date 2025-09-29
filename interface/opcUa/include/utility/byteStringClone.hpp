@@ -14,7 +14,7 @@ class ByteStringClone {
     ByteStringClone(ByteStringClone&& other) noexcept;
     ByteStringClone& operator=(ByteStringClone&& other) noexcept;
 
-    auto getValue() const -> UA_ByteString;
+    UA_ByteString& getValue();
 
   private:
     UA_ByteString value;

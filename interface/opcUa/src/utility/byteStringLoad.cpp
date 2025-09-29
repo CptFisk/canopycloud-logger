@@ -36,8 +36,8 @@ ByteStringLoad::~ByteStringLoad() {
     UA_ByteString_clear(&value);
 }
 
-auto
-ByteStringLoad::getValue() const -> UA_ByteString {
+UA_ByteString&
+ByteStringLoad::getValue() {
     return value;
 }
 

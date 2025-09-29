@@ -16,8 +16,8 @@ ByteStringClone::~ByteStringClone() {
     UA_ByteString_clear(&value);
 }
 
-auto
-ByteStringClone::getValue() const -> UA_ByteString {
+UA_ByteString&
+ByteStringClone::getValue() {
     return value;
 }
 

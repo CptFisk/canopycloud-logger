@@ -12,6 +12,11 @@ class ByteStringLoad {
     explicit ByteStringLoad(const std::string& path); ///< Constructor that loads a file
     ~ByteStringLoad();
 
+    /**
+     * @brief Fill with data
+     * @return True if file was loaded
+     */
+    auto set(const std::string& path) -> bool;
     [[nodiscard]] UA_ByteString& getValue();
 
     // Overloaders

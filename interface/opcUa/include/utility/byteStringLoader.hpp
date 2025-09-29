@@ -1,5 +1,6 @@
 #pragma once
 #include <open62541/types.h>
+#include <string>
 
 namespace Interface {
 /**
@@ -11,7 +12,7 @@ class ByteStringLoader {
     explicit ByteStringLoader(const std::string& path); ///< Constructor that loads a file
     ~ByteStringLoader();
 
-    [[nodiscard]] auto getValue() -> UA_ByteString;
+    [[nodiscard]] auto getValue() const -> UA_ByteString;
 
     // Overloaders
     ByteStringLoader(const ByteStringLoader&)            = delete;

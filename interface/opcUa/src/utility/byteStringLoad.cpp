@@ -1,13 +1,13 @@
 #include <fstream>
-#include <utility/byteStringLoader.hpp>
+#include <utility/byteStringLoad.hpp>
 #include <vector>
 
 namespace Interface {
 
-ByteStringLoader::ByteStringLoader()
+ByteStringLoad::ByteStringLoad()
   : value{} {}
 
-ByteStringLoader::ByteStringLoader(const std::string& path)
+ByteStringLoad::ByteStringLoad(const std::string& path)
   : value{} {
     std::ifstream file(path, std::ios::binary | std::ios::ate);
     if (!file.is_open()) {
@@ -32,24 +32,24 @@ ByteStringLoader::ByteStringLoader(const std::string& path)
         std::copy(buffer.begin(), buffer.end(), value.data);
 }
 
-ByteStringLoader::~ByteStringLoader() {
+ByteStringLoad::~ByteStringLoad() {
     UA_ByteString_clear(&value);
 }
 
 auto
-ByteStringLoader::getValue() const -> UA_ByteString {
+ByteStringLoad::getValue() const -> UA_ByteString {
     return value;
 }
 
-ByteStringLoader::ByteStringLoader(ByteStringLoader&& other) noexcept
+ByteStringLoad::ByteStringLoad(ByteStringLoad&& other) noexcept
   : value{} {
     value              = other.value;
     other.value.data   = nullptr;
     other.value.length = 0;
 }
 
-ByteStringLoader&
-ByteStringLoader::operator=(ByteStringLoader&& other) noexcept {
+ByteStringLoad&
+ByteStringLoad::operator=(ByteStringLoad&& other) noexcept {
     if (this != &other) {
         UA_ByteString_clear(&value);
         value              = other.value;

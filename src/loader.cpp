@@ -26,4 +26,10 @@ Loader::loadJson(const std::string& path) -> void {
     std::print("OPC Serverns: {}\n", opcUaJson.size());
 }
 
+auto
+Loader::getOpcUa() -> const std::vector<Interface::OpcUaJSON> {
+    return opcUaJson;
+}
+
+
 }

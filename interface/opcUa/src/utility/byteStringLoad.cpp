@@ -62,6 +62,7 @@ ByteStringLoad::set(const std::string& path) -> bool {
     value.data   = static_cast<UA_Byte*>(UA_malloc(size));
     if (value.data)
         std::copy(buffer.begin(), buffer.end(), value.data);
+    return true;
 }
 
 

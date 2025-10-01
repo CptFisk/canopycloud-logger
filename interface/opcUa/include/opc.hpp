@@ -1,20 +1,17 @@
 #pragma once
 #include <base.hpp>
-#include <config.hpp>
 #include <open62541/client_config_default.h>
-#include <open62541/client_highlevel.h>
-#include <open62541/plugin/log_stdout.h>
-#include <open62541/plugin/securitypolicy_default.h>
 #include <string>
 #include <utility/byteStringClone.hpp>
 #include <utility/byteStringLoad.hpp>
 #include <vector>
+#include <json.hpp>
 
 namespace Interface {
 
 class OpcUa : public Base {
   public:
-    OpcUa(const OpcConfig& config);
+    OpcUa(const OpcUaJSON& config);
     ~OpcUa() = default;
 
     auto init() -> bool override;
@@ -25,7 +22,7 @@ class OpcUa : public Base {
     auto fetchAndSelectCertificate() -> bool;
 
   protected:
-    const OpcConfig config;
+    const OpcUaJSON config;
 
     UA_Client*       client;       ///< Client
     UA_ClientConfig* clientConfig; ///< Configuration

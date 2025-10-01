@@ -5,8 +5,8 @@
 
 namespace Interface {
 
-OpcUa::OpcUa(const OpcConfig& config)
-  : endpoint(config.uri)
+OpcUa::OpcUa(const OpcUaJSON& config)
+  : endpoint(config.endpoint)
   , status{}
   , client(nullptr)
   , clientConfig(nullptr)
@@ -51,7 +51,7 @@ OpcUa::fetchAndSelectCertificate() -> bool {
         return false;
     }
     UA_EndpointDescription* selected = nullptr;
-    auto                    security = getSecurityConfig(config.security);
+    auto                    security = getSecurityConfig(config.policy);
 
     bool matched = false;
     for (auto i = 0; i < endpointCount; ++i) {
@@ -71,10 +71,7 @@ OpcUa::fetchAndSelectCertificate() -> bool {
 
 auto
 OpcUa::connect() -> bool {
-    status = UA_Client_connect(client, config.uri.c_str());
-    if (status != UA_STATUSCODE_GOOD)
-        throw std::runtime_error("Failed to connect to UA_Client");
-    return true;
+    return UA_Client_connect(client, config.endpoint.c_str()) == UA_STATUSCODE_GOOD ? true : false;
 }
 
 auto

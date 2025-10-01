@@ -19,7 +19,7 @@ class Loader {
     /**
      * @return All objects that match the profile of OpcUa
      */
-    auto getOpcUa() -> const std::vector<Interface::OpcUaJSON>;
+    auto getOpcUa() -> const std::vector<Interface::OpcUaJSON>&;
   private:
     nlohmann::json json;
 

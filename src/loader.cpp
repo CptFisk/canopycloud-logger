@@ -27,7 +27,7 @@ Loader::loadJson(const std::string& path) -> void {
 }
 
 auto
-Loader::getOpcUa() -> const std::vector<Interface::OpcUaJSON> {
+Loader::getOpcUa() -> const std::vector<Interface::OpcUaJSON>& {
     return opcUaJson;
 }
 

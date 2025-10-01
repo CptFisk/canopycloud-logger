@@ -7,11 +7,11 @@
 namespace Interface {
 
 struct OpcUaJSON {
-    std::string           endpoint;
-    std::string           username;
-    std::string           password;
-    Security              policy;
-    std::vector<OpcUaTag> Tags;
+    std::string           endpoint; ///< Endpoint address
+    std::string           username; ///< Username, if blank assume Anonymous
+    std::string           password; ///< Password
+    Security              policy;   ///< Desired security policy
+    std::vector<OpcUaTag> Tags;     ///< List of tags
 };
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaJSON, endpoint, username, password, Tags)

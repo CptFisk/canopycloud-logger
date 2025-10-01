@@ -1,8 +1,9 @@
 #pragma once
 #include "open62541/transport_generated.h"
 
-#include <string>
+#include <nlohmann/json.hpp>
 #include <open62541/client.h>
+#include <string>
 
 namespace Interface {
 
@@ -21,11 +22,12 @@ enum Security {
 };
 
 struct SecurityConfig {
-    std::string    policyUri;
+    std::string            policyUri;
     UA_MessageSecurityMode policyType;
 
-    SecurityConfig(const std::string& uri, UA_MessageSecurityMode type) : policyUri(uri), policyType(type) {
-    }
+    SecurityConfig(const std::string& uri, UA_MessageSecurityMode type)
+      : policyUri(uri)
+      , policyType(type) {}
 };
 
 /**
@@ -42,5 +44,17 @@ struct SecurityConfig {
 auto
 getSecurityConfig(const Security& sec) -> SecurityConfig;
 
+NLOHMANN_JSON_SERIALIZE_ENUM(Security,
+                             { { Security::None, "None" },
+                               { Basic128Rsa15Sign, "Basic128Rsa15Sign" },
+                               { Basic256Rsa15SignEncrypt, "Basic256Rsa15SignEncrypt" },
+                               { Basic256Sign, "Basic256Sign" },
+                               { Basic256SignEncrypt, "Basic256SignEncrypt" },
+                               { Basic256Sha256Sign, "Basic256Sha256Sign" },
+                               { Basic256Sha256SignEncrypt, "Basic256Sha256SignEncrypt" },
+                               { Aes128Sha256RsaOaepSign, "Aes128Sha256RsaOaepSign" },
+                               { Aes128Sha256RsaOaepSignEncrypt, "Aes128Sha256RsaOaepSignEncrypt" },
+                               { Aes256Sha256RsaPssSign, "Aes256Sha256RsaPssSign" },
+                               { Aes256Sha256RsaPssSignEncrypt, "Aes256Sha256RsaPssSignEncrypt" } })
 
 }

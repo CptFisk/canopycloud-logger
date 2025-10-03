@@ -14,7 +14,7 @@ struct OpcUaJSON {
     std::vector<OpcUaTag> tags;     ///< List of tags
 };
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaJSON, endpoint, username, password, Tags)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaJSON, endpoint, username, password, tags)
 
 inline void
 from_json(const nlohmann::json& j, OpcUaJSON& obj) {

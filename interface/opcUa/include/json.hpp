@@ -11,7 +11,7 @@ struct OpcUaJSON {
     std::string           username; ///< Username, if blank assume Anonymous
     std::string           password; ///< Password
     Security              policy;   ///< Desired security policy
-    std::vector<OpcUaTag> Tags;     ///< List of tags
+    std::vector<OpcUaTag> tags;     ///< List of tags
 };
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaJSON, endpoint, username, password, Tags)
@@ -22,7 +22,7 @@ from_json(const nlohmann::json& j, OpcUaJSON& obj) {
     j.at("Username").get_to(obj.username);
     j.at("Password").get_to(obj.password);
     j.at("Policy").get_to(obj.policy);
-    j.at("Tags").get_to(obj.Tags);
+    j.at("Tags").get_to(obj.tags);
 }
 
 }

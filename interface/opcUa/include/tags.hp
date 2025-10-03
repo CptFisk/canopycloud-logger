@@ -4,12 +4,16 @@ namespace Interface {
 
 struct OpcUaTag {
     std::string name;
+    std::string address;
+    int pollingInterval;
 };
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaTag, name)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaTag, name, address, pollingInterval)
 
 inline void from_json(const nlohmann::json& j, OpcUaTag& obj) {
     j.at("Name").get_to(obj.name);
+    j.at("Address").get_to(obj.address);
+    j.at("Polling").get_to(obj.pollingInterval);
 }
 
 

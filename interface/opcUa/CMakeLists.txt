@@ -40,7 +40,7 @@ add_library(
 
         ${CMAKE_CURRENT_SOURCE_DIR}/src/utility/byteStringLoad.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/utility/byteStringClone.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/utility/createNodeId.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/utility/nodes.cpp
 
 
 )

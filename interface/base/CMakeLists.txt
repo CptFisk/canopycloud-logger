@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 MESSAGE(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
+
 add_library(
         ${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/base.cpp

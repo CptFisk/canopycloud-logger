@@ -1,7 +1,7 @@
 #pragma once
+#include <opcTag.hp>
 #include <security.hpp>
 #include <string>
-#include <tags.hp>
 #include <vector>
 
 namespace Interface {

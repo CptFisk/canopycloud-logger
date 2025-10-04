@@ -7,7 +7,8 @@
         "Password" :  "",
         "Policy" : "Basic256Sha256SignEncrypt",
         "Tags": [
-          {"Name" : "Name" ,"Address" : "ns=4; i=2", "Type" : "Real", "Polling" : 1500 }
+          {"Name" : "i16" ,"Address" : "ns=4;s=Demo.Dynamic.Scalar.Int16", "Type" : "Real", "Polling" : 100 },
+          {"Name" : "i32" ,"Address" : "ns=4;s=Demo.Dynamic.Scalar.Int32", "Type" : "Real", "Polling" : 200 }
         ]
       }
     ]

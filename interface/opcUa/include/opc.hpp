@@ -7,12 +7,13 @@
 #include <utility/byteStringLoad.hpp>
 #include <vector>
 
+
 namespace Interface {
 
 class OpcUa : public Base {
   public:
     OpcUa(const OpcUaJSON& config);
-    ~OpcUa() = default;
+    ~OpcUa();
 
     auto init() -> bool override;
     auto connect() -> bool override;
@@ -23,6 +24,8 @@ class OpcUa : public Base {
 
   protected:
     const OpcUaJSON config;
+    UA_ReadRequest  readRequest;
+    UA_ReadResponse readResponse;
 
     UA_Client*       client;       ///< Client
     UA_ClientConfig* clientConfig; ///< Configuration

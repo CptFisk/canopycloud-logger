@@ -75,7 +75,7 @@ OpcUa::init() -> bool {
     for (auto i = 0; i < baseTags.size(); ++i) {
         UA_ReadValueId_init(&readRequest.nodesToRead[i]);
         readRequest.nodesToRead[i].attributeId = UA_ATTRIBUTEID_VALUE;
-        readRequest.nodesToRead[i].nodeId      = createNodeId(baseTags[i].address);
+        readRequest.nodesToRead[i].nodeId      = createNodeId(baseTags[i].getAddress());
     }
 
     return true;

@@ -9,7 +9,8 @@
 
 namespace Interface {
 OpcUa::OpcUa(const OpcUaJSON& config)
-  : endpoint(config.endpoint)
+  : Base(config.name)
+  , endpoint(config.endpoint)
   , status{}
   , client(nullptr)
   , clientConfig(nullptr)

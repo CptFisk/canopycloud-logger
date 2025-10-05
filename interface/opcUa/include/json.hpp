@@ -7,6 +7,7 @@
 namespace Interface {
 
 struct OpcUaJSON {
+    std::string           name;     ///< Name of server
     std::string           endpoint; ///< Endpoint address
     std::string           username; ///< Username, if blank assume Anonymous
     std::string           password; ///< Password
@@ -18,6 +19,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(OpcUaJSON, endpoint, username, password, tags
 
 inline void
 from_json(const nlohmann::json& j, OpcUaJSON& obj) {
+    j.at("Name").get_to(obj.name);
     j.at("Endpoint").get_to(obj.endpoint);
     j.at("Username").get_to(obj.username);
     j.at("Password").get_to(obj.password);

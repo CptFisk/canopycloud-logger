@@ -1,9 +1,9 @@
 #pragma once
+#include <atomic>
 #include <base.hpp>
+#include <chrono>
 #include <memory>
 #include <vector>
-#include <atomic>
-#include <chrono>
 
 namespace Logger {
 
@@ -14,7 +14,9 @@ class Client {
     auto run() -> void;
 
   private:
-    auto pollTags(const std::vector<Interface::BaseTag*>& tags) -> void;
+    const std::string name; ///< Name of client
+
+    auto               pollTags(const std::vector<Interface::BaseTag*>& tags) -> void;
     std::atomic<bool>& running;
 
     std::chrono::steady_clock::time_point last100;  ///< Memory for last cyclic run (100ms)

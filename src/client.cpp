@@ -12,7 +12,8 @@ hello() {
 
 Client::Client(std::unique_ptr<Interface::Base> interface, std::atomic<bool>& running)
   : interface(std::move(interface))
-  , running(running) {
+  , running(running)
+  , name(interface->getName()) {
 
     auto& tags = this->interface->getTags();
     for (auto& tag : tags) {

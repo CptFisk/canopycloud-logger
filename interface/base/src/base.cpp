@@ -2,8 +2,5 @@
 
 namespace Interface {
 
-auto Base::getType() const -> Types {
-    return type;
-}
 
 }

@@ -4,8 +4,8 @@
 #include <open62541/client.h>
 #include <print>
 #include <utility/convert.hpp>
-#include <utility/nodes.hpp>
 #include <utility/mapper.hpp>
+#include <utility/nodes.hpp>
 
 namespace Interface {
 OpcUa::OpcUa(const OpcUaJSON& config)
@@ -20,6 +20,14 @@ OpcUa::OpcUa(const OpcUaJSON& config)
     client       = UA_Client_new();
     clientConfig = UA_Client_getConfig(client);
     UA_ClientConfig_setDefault(clientConfig);
+
+    // Check if tags is valid
+    for (const auto& tag : config.tags) {
+        if (validNodeId(tag.address)) {
+            // It's a valid tag
+            baseTags.push_back(BaseTag(tag.name, tag.address, tag.pollingInterval));
+        }
+    }
 }
 
 OpcUa::~OpcUa() {
@@ -47,19 +55,12 @@ OpcUa::init() -> bool {
 
     if (UA_ClientConfig_setDefaultEncryption(clientConfig, clientCert.getValue(), keyCert.getValue(), trustList, 1, nullptr, 0) !=
         UA_STATUSCODE_GOOD) {
-        std::print("Could not configure encryption {}", UA_StatusCode_name(status));
+        std::cerr << "Could not configure encryption " << UA_StatusCode_name(status);
         UA_Client_delete(client);
         client = nullptr;
         return false;
     }
 
-    // Check if tags is valid
-    for (const auto& tag : config.tags) {
-        if (validNodeId(tag.address)) {
-            // It's a valid tag
-            baseTags.push_back({ tag.name, tag.address });
-        }
-    }
     // Create a read request
     UA_ReadRequest_init(&readRequest);
     readRequest.nodesToReadSize = baseTags.size();

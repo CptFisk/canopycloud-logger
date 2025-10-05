@@ -15,7 +15,7 @@ class BaseTag {
       , changed(false) {}
 
     auto setValue(const variants& newValue) -> void {
-        changed   = (value != newValue);
+        changed   = (value != newValue) || changed;
         prevValue = value;
         value     = newValue;
     }
